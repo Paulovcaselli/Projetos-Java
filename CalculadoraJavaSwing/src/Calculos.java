@@ -9,7 +9,7 @@ import java.util.List;
  */
 /**
  *
- * @author paulo
+ * @author Paulo Victor Caselli
  */
 public class Calculos {
 
