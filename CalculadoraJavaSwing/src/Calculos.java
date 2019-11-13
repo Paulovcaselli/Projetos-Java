@@ -1,6 +1,8 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,13 +24,18 @@ public class Calculos {
     }
 
     public String calculadora(String expressao) {
-        String resultado;
-        List<Double> listaNumeros = new ArrayList<Double>();
-        List<Character> listaOperadores = new ArrayList<Character>();
+        String resultado = "0.0";
+        try {
+            ScriptEngineManager factory = new ScriptEngineManager();
+            ScriptEngine engine = factory.getEngineByName("JavaScript");
+            Object obj = engine.eval(expressao);
+            System.out.println(obj);
+            System.out.println(obj.getClass());
+            resultado = obj.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        listaNumeros = obterNumeros(expressao);
-        listaOperadores = obterOperadores(expressao);
-        resultado = calcularValor(listaNumeros, listaOperadores);
         return resultado;
     }
 
